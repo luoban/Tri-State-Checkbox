@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 29
@@ -20,6 +21,16 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+}
+
+publish {
+    userOrg = 'kazakago'
+    groupId = 'com.kazakago.tri-state-checkbox'
+    artifactId = 'tri-state-checkbox'
+    publishVersion = android.defaultConfig.versionName
+    desc = '3 State Checkbox for android in pure Material Style'
+    website = 'https://github.com/KazaKago/Tri-State-Checkbox'
+    licences = ['MIT']
 }
 
 dependencies {
