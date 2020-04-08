@@ -1,8 +1,9 @@
 # Animated Tri State Checkbox
 3 State Checkbox for **Android** in pure Material Style, with animation between the states.
 
-[![](https://jitpack.io/v/sephiroth74/Tri-State-Checkbox.svg)](https://jitpack.io/#sephiroth74/Tri-State-Checkbox)
-
+[![Download](https://api.bintray.com/packages/kazakago/maven/tri-state-checkbox/images/download.svg)](https://bintray.com/kazakago/maven/tri-state-checkbox/_latestVersion)
+[![Build Status](https://app.bitrise.io/app/440c28e73a153e24/status.svg?token=tBmmmhVrhSUYX88cbFRe3w&branch=master)](https://app.bitrise.io/app/440c28e73a153e24)
+[![license](https://img.shields.io/github/license/kazakago/tri-state-checkbox.svg)](LICENSE.md)
 
 <img src="./art/checkbox.gif" width="360" height="740" />
 
@@ -65,30 +66,11 @@ In xml layout:
 
 # Installation
 
-## Maven
+## Gradle
 
-    implementation 'it.sephiroth.android.library:tri-state-checkbox:{version}'
+    implementation 'com.kazakago.tri-state-checkbox:tri-state-checkbox:{version}'
 
-
-## JitPack
-
-**Step 1.** Add the JitPack repository to your build file:
-
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
-
-**Step 2.** Add the dependency
-
-	dependencies {
-	        implementation 'com.github.sephiroth74:AndroidUIGestureRecognizer:Tag'
-	}
-
-Get the latest version  on [JitPack](https://jitpack.io/#sephiroth74/Tri-State-Checkbox)
-
+Get the latest version  on [![Download](https://api.bintray.com/packages/kazakago/maven/tri-state-checkbox/images/download.svg)](https://bintray.com/kazakago/maven/tri-state-checkbox/_latestVersion)
 
 # License
 
