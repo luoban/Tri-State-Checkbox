@@ -4,20 +4,11 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.ViewDebug;
-import androidx.annotation.ArrayRes;
-import androidx.appcompat.widget.AppCompatCheckBox;
-import timber.log.Timber;
+import android.widget.CheckBox;
 
-public class CheckBox3 extends AppCompatCheckBox {
 
-    private static final Timber.Tree logger;
 
-    static {
-        if (BuildConfig.DEBUG) {
-            Timber.plant(new Timber.DebugTree());
-        }
-        logger = Timber.asTree();
-    }
+public class CheckBox3 extends CheckBox {
 
     private boolean mBroadcasting;
     private boolean mIndeterminate;
@@ -66,15 +57,12 @@ public class CheckBox3 extends AppCompatCheckBox {
             final boolean indeterminate = a.getBoolean(R.styleable.CheckBox3_sephiroth_checkbox3_indeterminate, false);
             final boolean checked = a.getBoolean(R.styleable.CheckBox3_android_checked, false);
 
-            logger.v("checked: %b, indeterminate: %b", checked, indeterminate);
 
             mBroadcasting = true;
 
             int index = getStateIndex(checked, indeterminate);
             if (!isValidStateIndex(index)) {
-                logger.e("Invalid state index (%d). Not allowed", index);
                 index = getFirstValidStateIndex(index);
-                logger.e("using next valid state: %d", index);
             }
             moveToState(index);
 
@@ -83,7 +71,7 @@ public class CheckBox3 extends AppCompatCheckBox {
         }
     }
 
-    public void setCycle(@ArrayRes final int cycleRes) {
+    public void setCycle(final int cycleRes) {
         setCycle(getResources().getIntArray(cycleRes));
     }
 
@@ -122,7 +110,6 @@ public class CheckBox3 extends AppCompatCheckBox {
                 builder.append(", ");
             }
             builder.append("]");
-            logger.i("setCycle(%s)", builder);
         }
 
         mCycle = cycle == null ? DEFAULT_CYCLE : cycle;
@@ -135,7 +122,6 @@ public class CheckBox3 extends AppCompatCheckBox {
     public void toggle() {
         if (null == mCycle) return;
 
-        logger.i("toggle()");
         final int currentIndex = getCurrentStateIndex();
         moveToNextState(currentIndex);
     }
@@ -144,11 +130,9 @@ public class CheckBox3 extends AppCompatCheckBox {
     public void setChecked(boolean checked) {
         if (null == mCycle) return;
 
-        logger.i("setChecked(%b)", checked);
 
         int index = getStateIndex(checked, isIndeterminate());
         if (!isValidStateIndex(index)) {
-            logger.e("Invalid state index (%d). Not allowed", index);
             return;
         }
 
@@ -180,11 +164,9 @@ public class CheckBox3 extends AppCompatCheckBox {
     public void setIndeterminate(boolean indeterminate) {
         if (null == mCycle) return;
 
-        logger.i("setIndeterminate(%b)", indeterminate);
 
         int index = getStateIndex(isChecked(), indeterminate);
         if (!isValidStateIndex(index)) {
-            logger.e("Invalid state index (%d). Not allowed", index);
             return;
         }
 
@@ -192,9 +174,7 @@ public class CheckBox3 extends AppCompatCheckBox {
     }
 
     private void moveToNextState(final int index) {
-        logger.i("moveToNextState(current: %d)", index);
         int nextIndex = getNextValidIndex(index);
-        logger.v("nextIndex: %d", nextIndex);
         boolean checked = nextIndex < 2;
         mIndeterminate = nextIndex == 1 || nextIndex == 3;
         setChecked(checked);
@@ -202,7 +182,6 @@ public class CheckBox3 extends AppCompatCheckBox {
 
     private void moveToState(final int nextIndex) {
         if (!isValidStateIndex(nextIndex)) {
-            logger.e("Invalid state index (%d). Not allowed", nextIndex);
         }
         boolean checked = nextIndex < 2;
         mIndeterminate = nextIndex == 1 || nextIndex == 3;

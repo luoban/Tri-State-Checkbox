@@ -3,10 +3,8 @@ package it.sephiroth.android.library.checkbox3state;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.text.TextUtils;
+import android.util.LruCache;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.collection.LruCache;
 
 public final class TypefaceUtils {
     private static final LruCache<String, Typeface> fontCache = new LruCache<>(4);
@@ -26,7 +24,7 @@ public final class TypefaceUtils {
         return Typeface.defaultFromStyle(Typeface.NORMAL);
     }
 
-    public static Typeface loadFromAsset(@NonNull final AssetManager assets, @Nullable final String assetPath) {
+    public static Typeface loadFromAsset(final AssetManager assets, final String assetPath) {
 
         if (TextUtils.isEmpty(assetPath)) {
             return null;
